@@ -26,8 +26,7 @@ permissions:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
-    strategy:
+    if: false
       matrix:
         platform: [intel, cuda, cuda13, vulkan, cpu, musa, rocm]
       fail-fast: false
