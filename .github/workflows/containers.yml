@@ -26,8 +26,7 @@ permissions:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
-    strategy:
+    if: false
       matrix:
         platform: [intel, cuda, cuda13, vulkan, cpu, musa, rocm]
       fail-fast: false
@@ -63,8 +62,8 @@ jobs:
   # note make sure mostlygeek/llama-swap has admin rights to the llama-swap package
   # see: https://github.com/actions/delete-package-versions/issues/74
   delete-untagged-containers:
+    if: false
     needs: build-and-push
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/delete-package-versions@v5
         with:

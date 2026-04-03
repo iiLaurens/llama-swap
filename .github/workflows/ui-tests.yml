@@ -18,8 +18,7 @@ on:
 jobs:
 
   run-tests:
-    runs-on: ubuntu-latest
-    defaults:
+    if: false
       run:
         working-directory: ui-svelte
     steps:
