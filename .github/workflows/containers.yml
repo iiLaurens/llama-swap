@@ -1,11 +1,9 @@
 name: Build Containers
 
 on:
-  # time has no specific meaning, trying to time it after
-  # the llama.cpp daily packages are published
-  # https://github.com/ggml-org/llama.cpp/blob/master/.github/workflows/docker.yml
-  schedule:
-    - cron: "37 5 * * *"
+  # schedule disabled temporarily - use workflow_dispatch to trigger manually
+  # schedule:
+  #   - cron: "37 5 * * *"
 
   # Allows manual triggering of the workflow
   workflow_dispatch:
@@ -26,8 +24,7 @@ permissions:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
-    strategy:
+    if: false
       matrix:
         platform: [intel, cuda, cuda13, vulkan, cpu, musa, rocm]
       fail-fast: false
@@ -63,8 +60,8 @@ jobs:
   # note make sure mostlygeek/llama-swap has admin rights to the llama-swap package
   # see: https://github.com/actions/delete-package-versions/issues/74
   delete-untagged-containers:
+    if: false
     needs: build-and-push
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/delete-package-versions@v5
         with:

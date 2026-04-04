@@ -1,11 +1,14 @@
 # https://docs.github.com/en/actions/use-cases-and-examples/project-management/closing-inactive-issues
 name: Close inactive issues
 on:
-  schedule:
-    - cron: "32 1 * * *"
+  # schedule disabled temporarily - use workflow_dispatch to trigger manually
+  # schedule:
+  #   - cron: "32 1 * * *"
+  workflow_dispatch:
 
 jobs:
   close-issues:
+    if: false
     runs-on: ubuntu-latest
     permissions:
       issues: write
